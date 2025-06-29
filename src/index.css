@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+
+
+
+
+
+
+
+
+@theme {
+    --color-base: #13131A;
+    --color-baseTwo: #9E9E9E;
+    --color-primary: #F09219;
+    --color-second: #D88317;
+}
+
+
+/* السويتشر دايمًا LTR */
+.language-switcher {
+    direction: ltr;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* تثبيت السويتشر LTR في RTL كمان */
+[dir='rtl'] .language-switcher {
+    direction: ltr;
+}
