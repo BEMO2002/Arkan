@@ -11,7 +11,7 @@ const Home = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <section className=" py-[132px] px-4 sm:px-6 lg:px-8 relative">
+    <section className=" pt-[132px] pb-[50px] px-4 sm:px-6 lg:px-8 relative">
       <img
         src={star}
         alt={t("starAlt", "Star decoration")}
@@ -22,7 +22,7 @@ const Home = () => {
       <img
         src={Ellipse}
         alt={t("ellipseAlt", "Ellipse decoration")}
-        className={`absolute md:bottom-7 -bottom-0 -z-10 opacity-50 lg:opacity-100 ${
+        className={`absolute hidden md:block md:bottom-7 -bottom-0 -z-10 opacity-50 lg:opacity-100 ${
           i18n.language === "ar" ? "md:left-50 left-20" : "md:right-50 right-20"
         }`}
       />
@@ -46,15 +46,15 @@ const Home = () => {
 
           {/* Right side - Text content */}
           <div className="w-full md:w-1/2 text-center md:text-start mb-30">
-            <span className="inline-block text-baseTwo text-[13px] md:text-[16px] font-[700] leading-[26px] mb-4">
+            <span className="inline-block text-baseTwo text-[14px] md:text-[16px] font-[700] leading-[26px] mb-4">
               {t("heroSubtitle")}
             </span>
 
-            <h2 className="text-xl lg:text-[40px] font-[700] text-primary mb-1 leading-[52px]">
-              {t("heroTitle")}{" "}
+            <h2 className="text-[28px] lg:text-[40px] font-[700] text-primary mb-1 leading-[52px]">
+              {t("heroTitle")} <br />
               <span className="text-base">{t("heroTitleFrom")}</span>
             </h2>
-            <p className="text-[16px] text-base mt-[16px] lg:w-[410px] w-[350px] mx-auto md:mx-0">
+            <p className="text-[17px] text-base mt-[16px] lg:w-[410px] w-[350px] mx-auto md:mx-0">
               {t("heroDescription")}
             </p>
             <Link
