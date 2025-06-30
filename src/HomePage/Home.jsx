@@ -29,7 +29,7 @@ const Home = () => {
       <img
         src={Rectangle}
         alt=""
-        className="fixed hidden lg:block right-0 bottom-[50%] translate-y-[55%] -z-10"
+        className="absolute hidden lg:block right-0 bottom-[50%] translate-y-[52%] -z-10"
       />
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-16">

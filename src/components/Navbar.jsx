@@ -135,7 +135,7 @@ const Navbar = () => {
               <NavLink to="/portfolio">{t("navPortfolio")}</NavLink>
               <NavLink to="/team">{t("navTeam")}</NavLink>
               <NavLink to="/contact">{t("navContact")}</NavLink>
-              {/* زر Toggle لتغيير اللغة في الموبايل */}
+              {/* زر Toggle تغيير اللغة في الموبايل */}
               <div
                 className={`relative inline-flex items-center h-[32px] w-[64px] bg-gray-200 rounded-full p-1 cursor-pointer language-switcher ${
                   i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
