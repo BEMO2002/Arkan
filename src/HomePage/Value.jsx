@@ -13,7 +13,7 @@ const Value = () => {
   return (
     <section className="py-[120px]   px-4 sm:px-6 lg:px-8 relative">
       <div className="container mx-auto">
-        <div className="flex items-center justify-center space-x-2 mb-20">
+        <div className="flex items-center justify-center space-x-2 mb-10 mt-10">
           <img src={star} alt="" />
           <h3 className="text-baseTwo text-[24px] mb-2 font-[700] leading-[36px]">
             {t("ValueHeader")}
