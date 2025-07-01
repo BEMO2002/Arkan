@@ -35,22 +35,26 @@ const Footer = () => {
             <li className="flex items-start gap-3">
               <FaMapMarkerAlt className="mt-1 text-primary" />
               <span className="text-[16px]">
-                2715 Ash Dr. San Jose, South Dakota 83475
+                {t("footer.contacts.address")}
               </span>
             </li>
             <li className="flex items-start gap-3">
               <FaEnvelope className="mt-1 text-primary" />
               <span className="text-[16px] font-[400]">
-                neveeh.simmons@example.com
+                {t("footer.contacts.email")}
               </span>
             </li>
             <li className="flex items-start gap-3">
               <FaClock className="mt-1 text-primary" />
-              <span className="text-[16px] font-[400]">2 am : 9 am</span>
+              <span className="text-[16px] font-[400]">
+                {t("footer.contacts.hours")}
+              </span>
             </li>
             <li className="flex items-start gap-3">
               <FaPhoneAlt className="mt-1 text-primary" />
-              <span className="text-[16px] font-[400]">+7-445-553-3864</span>
+              <span className="text-[16px] font-[400]">
+                {t("footer.contacts.phone")}
+              </span>
             </li>
           </ul>
         </div>
