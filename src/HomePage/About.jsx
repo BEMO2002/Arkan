@@ -30,10 +30,10 @@ const About = () => {
               {t("AboutTitle")} <br />
               <span className="text-base">{t("AboutTitleTwo")}</span>
             </h2>
-            <p className="md:text-[24px] text-[20px] text-base font-[400] mt-[16px] md:mb-[40px] lg:w-[600px] h-[108px] w-[350px] mx-auto md:mx-0">
+            <p className="md:text-[24px] text-[20px] text-base font-[400] mt-[16px] md:mb-[40px] lg:w-[600px]  w-[370px] mx-auto md:mx-0">
               {t("AboutDescription")}
             </p>
-            <p className="md:text-[20px] text-[17px] text-baseTwo font-[400] leading-[30px] mt-[10px] lg:w-[600px] h-[108px]  w-[350px] mx-auto md:mx-0">
+            <p className="md:text-[20px] text-[17px] text-baseTwo font-[400] leading-[30px] mt-[10px] lg:w-[600px]   w-[380px] mx-auto md:mx-0">
               {t("AboutDescriptionTwo")} <br /> <br />
               <span className="">{t("AboutDescriptionThree")}</span> <br />{" "}
               <br />

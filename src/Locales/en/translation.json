@@ -25,5 +25,104 @@
   "valueHeadThree": "Significant ROI",
   "valueParagraphThree": "To generate highly focused leads ready to purchases.",
   "valueHeadFour": "Awesome Results",
-  "valueParagraphFour": "We have seen great successes with everyone companies."
+  "valueParagraphFour": "We have seen great successes with everyone companies.",
+  "MissionTitleOne": "Our Mission",
+  "MissionParaOne": "To help businesses and brands grow online by crafting their ideas from scratch into reality. We strive to provide the highest quality marketing services that enable our clients to reach their profit goals and objectives by helping businesses amplify their impact through unique, creative, and effective digital marketing solutions.",
+  "MissionParaOne2": "",
+  "MissionTitleTwo": "Our Vision",
+  "MissionParaTwo": "To become the go to marketing agency hub in Egypt Middle East providing for all businesses seeking innovative digital marketing services and solutions hub that brings success and growth.",
+  "MissionParaOne3": "",
+  "NumberOne": "Active Clients",
+  "NumberTwo": "Projects Done",
+  "NumberThree": "Team Advisors",
+  "NumberFour": "Glorious Years",
+  "DigitalHeader": "Our Services",
+  "DigitalHeader2": "Smart Solutions for Modern Brands",
+  "DigitalHeadOne": "Advertising strategies",
+  "DigitalParagraphOne": "Create and manage top-performing social campaigns and start developing a dedicated customer fan base.",
+  "DigitalHeadTwo": "Creative Content Creation",
+  "DigitalParagraphTwo": "You can provide the answers that your potential customers are trying to find, so you can become the industry.",
+  "DigitalHeadThree": "Social media campaigns",
+  "DigitalParagraphThree": "Target your ideal search phrases and get found at the top of Google’s search results. PPC allows you.",
+  "DigitalButton": "Check Our Services",
+  "ProgressHeader": "our power",
+  "progress": {
+    "seoMarketing": "SEO Marketing",
+    "keywordsResults": "Keywords Results",
+    "googleAnalytics": "Google Analytics",
+    "offPageSeo": "Off Page SEO",
+    "digitalMarketingSolutions": " Digital Marketing Solutions Experts"
+  },
+  "common": {
+    "starAlt": "Decorative star icon",
+    "logoAlt": "Arkan company logo"
+  },
+  "testimonials": {
+    "header": "Our power",
+    "title": "What They Say About",
+    "quotes": {
+      "michael": "“An interesting implication of the 2007 study concerns the use of hand sanitizers by observant Muslim”",
+      "sarah": "“An interesting implication of the 2007 study concerns the use of hand sanitizers by observant Muslim”",
+      "emily": "“An interesting implication of the 2007 study concerns the use of hand sanitizers by observant Muslim”",
+      "david": "“An interesting implication of the 2007 study concerns the use of hand sanitizers by observant Muslim”"
+    },
+    "people": {
+      "michael": {
+        "name": "Michael Chen",
+        "position": "Marketing Director, InnovateLab"
+      },
+      "sarah": {
+        "name": "Sarah Johnson",
+        "position": "CEO, TechSolutions"
+      },
+      "emily": {
+        "name": "Emily Rodriguez",
+        "position": "Founder, StartupXYZ"
+      },
+      "david": {
+        "name": "David Thompson",
+        "position": "CTO, GlobalTech"
+      }
+    }
+  },
+
+  "delay": {
+    "heading": {
+      "part1": "Don't just compete —",
+      "part2": "dominate.",
+      "part3": "Let's get started."
+    }
+  },
+  "footer": {
+    "contacts": {
+      "title": "Contacts",
+      "address": "2715 Ash Dr. San Jose, South Dakota 83475",
+      "email": "neveeh.simmons@example.com",
+      "hours": "2 am : 9 am",
+      "phone": "+7-445-553-3864"
+    },
+    "services": {
+      "title": "Services",
+      "list": [
+        "Personal Training",
+        "Home Cleaning",
+        "Yoga Instruction",
+        "Personal Chef",
+        "Adult Day Program",
+        "Meals on Wheels"
+      ]
+    },
+    "about": {
+      "title": "Arkan Marketing",
+      "companyName": "Arkan – Marketing Agency",
+      "description": {
+        "part1": "Creative multifaced company focusing on growing brands online by crafting your ideas from scratch into reality - ",
+        "part2": ""
+      }
+    },
+    "copyright": {
+      "part1": "Copyright © 2025 by ",
+      "part2": " All Rights Reserved."
+    }
+  }
 }
