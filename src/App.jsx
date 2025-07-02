@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import HomePage from "./HomePage";
 import AboutPage from "./AboutPage/base";
 import ServicesPage from "./ServicesPage/Source";
+import PortfolioMain from "./PortfolioPage/PotfolioMain";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/services" element={<Layout />}>
           <Route index element={<ServicesPage />} />
+        </Route>
+        <Route path="/portfolio" element={<Layout />}>
+          <Route index element={<PortfolioMain />} />
         </Route>
       </Routes>
     </BrowserRouter>

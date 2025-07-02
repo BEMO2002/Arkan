@@ -276,5 +276,15 @@
       "description": "Bring your app ideas to life with our expert development service. Create innovative solutions for your users.",
       "iconAlt": "App development icon"
     }
+  },
+  "portfolio": {
+    "header": {
+      "title": "Portfolio",
+      "imageAlt": "Portfolio page header image"
+    }
+  },
+  "breadcrumbsPortfolio": {
+    "home": "Home",
+    "portfolio": "Portfolio"
   }
 }

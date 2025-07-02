@@ -266,5 +266,15 @@
       "description": "اجعل أفكار تطبيقاتك تنبض بالحياة من خلال خدمة التطوير المتخصصة لدينا. إنشاء حلول مبتكرة للمستخدمين.",
       "iconAlt": "App development icon"
     }
+  },
+  "portfolio": {
+    "header": {
+      "title": "معرض الأعمال",
+      "imageAlt": "صورة رأس صفحة معرض الأعمال"
+    }
+  },
+  "breadcrumbsPortfolio": {
+    "home": "الرئيسية",
+    "portfolio": "معرض الأعمال"
   }
 }
