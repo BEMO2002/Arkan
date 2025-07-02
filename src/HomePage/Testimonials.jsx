@@ -13,36 +13,36 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: t("testimonials.people.michael.name"),
-      position: t("testimonials.people.michael.position"),
-      text: t("testimonials.quotes.michael"),
+      name: t("testimonials.people.mohamed.name"),
+      position: t("testimonials.people.mohamed.position"),
+      text: t("testimonials.quotes.mohamed"),
       photo:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       rating: 5,
     },
     {
       id: 2,
-      name: t("testimonials.people.sarah.name"),
-      position: t("testimonials.people.sarah.position"),
-      text: t("testimonials.quotes.sarah"),
+      name: t("testimonials.people.layla.name"),
+      position: t("testimonials.people.layla.position"),
+      text: t("testimonials.quotes.layla"),
       photo:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
       rating: 5,
     },
     {
       id: 3,
-      name: t("testimonials.people.emily.name"),
-      position: t("testimonials.people.emily.position"),
-      text: t("testimonials.quotes.emily"),
+      name: t("testimonials.people.asmaa.name"),
+      position: t("testimonials.people.asmaa.position"),
+      text: t("testimonials.quotes.asmaa"),
       photo:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
       rating: 5,
     },
     {
       id: 4,
-      name: t("testimonials.people.david.name"),
-      position: t("testimonials.people.david.position"),
-      text: t("testimonials.quotes.david"),
+      name: t("testimonials.people.samy.name"),
+      position: t("testimonials.people.samy.position"),
+      text: t("testimonials.quotes.samy"),
       photo:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       rating: 5,

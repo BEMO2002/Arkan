@@ -8,6 +8,7 @@ import ServicesPage from "./ServicesPage/Source";
 import PortfolioMain from "./PortfolioPage/PotfolioMain";
 import MainTeam from "./TeamPage/MainTeam";
 import MainContact from "./ContactPage/MainContact";
+import MainDashboard from "./AdminDashboard/MainDashboard";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/contact" element={<Layout />}>
           <Route index element={<MainContact />} />
+        </Route>
+        <Route path="/admin" element={<Layout />}>
+          <Route index element={<MainDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

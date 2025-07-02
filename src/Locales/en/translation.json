@@ -58,30 +58,30 @@
     "logoAlt": "Arkan company logo"
   },
   "testimonials": {
-    "header": "Our power",
+    "header": "Our Power",
     "title": "What They Say About",
     "quotes": {
-      "michael": "“An interesting implication of the 2007 study concerns the use of hand sanitizers by observant Muslim”",
-      "sarah": "“An interesting implication of the 2007 study concerns the use of hand sanitizers by observant Muslim”",
-      "emily": "“An interesting implication of the 2007 study concerns the use of hand sanitizers by observant Muslim”",
-      "david": "“An interesting implication of the 2007 study concerns the use of hand sanitizers by observant Muslim”"
+      "mohamed": "“This platform truly helped us boost our online presence — it exceeded our expectations in every way.”",
+      "layla": "“The level of support and attention to detail was outstanding. I highly recommend their services.”",
+      "asmaa": "“Professional, reliable, and incredibly effective. I saw real results within weeks.”",
+      "samy": "“A game-changer for our business intuitive interface and excellent customer service.”"
     },
     "people": {
-      "michael": {
-        "name": "Michael Chen",
-        "position": "Marketing Director, InnovateLab"
+      "mohamed": {
+        "name": "Mohamed Ahmed",
+        "position": "Digital Marketing "
       },
-      "sarah": {
-        "name": "Sarah Johnson",
-        "position": "CEO, TechSolutions"
+      "layla": {
+        "name": "Layla Hussein",
+        "position": "Founder,"
       },
-      "emily": {
-        "name": "Emily Rodriguez",
-        "position": "Founder, StartupXYZ"
+      "asmaa": {
+        "name": "Asmaa Yassin",
+        "position": "Operations Manager"
       },
-      "david": {
-        "name": "David Thompson",
-        "position": "CTO, GlobalTech"
+      "samy": {
+        "name": "Samy Khaled",
+        "position": "Product Designer"
       }
     }
   },
@@ -98,20 +98,22 @@
       "title": "Contacts",
       "address": "2715 Ash Dr. San Jose, South Dakota 83475",
       "email": "neveeh.simmons@example.com",
-      "hours": "2 am : 9 am",
-      "phone": "+7-445-553-3864"
+      "hours": "5 pm : 9 am",
+      "phone": "+201221490232"
     },
     "services": {
-      "title": "Services",
+      "title": "Our Services",
       "list": [
-        "Personal Training",
-        "Home Cleaning",
-        "Yoga Instruction",
-        "Personal Chef",
-        "Adult Day Program",
-        "Meals on Wheels"
+        "Web Development",
+        "Mobile App Development",
+        "Motion Graphic",
+        "Graphic Design",
+        "Video Editing",
+        "Social media campaigns",
+        "Creative Content Creation"
       ]
     },
+
     "about": {
       "title": "Arkan Marketing",
       "companyName": "Arkan – Marketing Agency",
