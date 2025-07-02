@@ -8,8 +8,12 @@ import ServicesPage from "./ServicesPage/Source";
 import PortfolioMain from "./PortfolioPage/PotfolioMain";
 import MainTeam from "./TeamPage/MainTeam";
 import MainContact from "./ContactPage/MainContact";
-import MainDashboard from "./AdminDashboard/MainDashboard";
-
+import LayoutDashboard from "./LayoutDashboard";
+import ProjectsDashboard from "./AdminDashboard/ProjectsDashboard";
+import AddCategory from "./AdminDashboard/AddCategory";
+import ContactForm from "./AdminDashboard/ContactForm";
+import CreatServices from "./AdminDashboard/CreatServices";
+  
 function App() {
   return (
     <BrowserRouter>
@@ -32,8 +36,11 @@ function App() {
         <Route path="/contact" element={<Layout />}>
           <Route index element={<MainContact />} />
         </Route>
-        <Route path="/admin" element={<Layout />}>
-          <Route index element={<MainDashboard />} />
+        <Route path="/admin" element={<LayoutDashboard />}>
+          <Route path="/admin/projects" element={<ProjectsDashboard />} />
+          <Route path="/admin/add-category" element={<AddCategory />} />
+          <Route path="/admin/contact-form" element={<ContactForm />} />
+          <Route path="/admin/creat-services" element={<CreatServices />} />
         </Route>
       </Routes>
     </BrowserRouter>
