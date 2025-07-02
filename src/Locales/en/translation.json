@@ -124,5 +124,157 @@
       "part1": "Copyright © 2025 by ",
       "part2": " All Rights Reserved."
     }
+  },
+  "about": {
+    "header": {
+      "title": "About",
+      "imageAlt": "About page header image"
+    }
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "about": "About"
+  },
+  "aboutOne": {
+    "section1": {
+      "title": "Who we are",
+      "imageAlt": "About our company",
+      "heading": {
+        "line1": "We're on a Mission to Change",
+        "line2": "Your View of Digital Services"
+      },
+      "description1": "is a values-driven Digital agency dedicated to empowering our customers.",
+      "description2": "Over the years, we have worked with Fortune 500s and brand-new startups. We help ambitious businesses like yours generate more profits by building awareness, driving web traffic, connecting with customers, and growing overall sales. Give us a call."
+    }
+  },
+  "commonOne": {
+    "decorationStarAlt": "Decorative star icon",
+    "decorationBallAlt": "Decorative ball graphic",
+    "logoAlt": "Arkan Marketing Agency logo"
+  },
+  "why": {
+    "title": "Why Choose Us",
+    "starAlt": "Decorative star icon",
+    "ballAlt": "Decorative circle graphic",
+    "heading": {
+      "line1": "Work with a Dedicated",
+      "line2": "Digital Agency"
+    },
+    "description": "We are a digital marketing company with a team that will proactively manage your business through creativity, commitment, and customization according to the client's budget and needs.",
+    "imageAlt": "Why choose our agency"
+  },
+  "values": {
+    "box1": {
+      "title": "Radical Integrity",
+      "description": "Our people truly care for our work and for each other.",
+      "vectorAlt": "Decorative vector graphic 1"
+    },
+    "box2": {
+      "title": "Exceptional Quality",
+      "description": "We deliver outstanding results that exceed expectations.",
+      "vectorAlt": "Decorative vector graphic 2"
+    },
+    "box3": {
+      "title": "Innovative Solutions",
+      "description": "Creative approaches tailored to your unique needs.",
+      "vectorAlt": "Decorative vector graphic 3"
+    }
+  },
+  "process": {
+    "title": "Our Process",
+    "starAlt": "Decorative star icon",
+    "decorationAlt": "Decorative rectangle graphic",
+    "step1": {
+      "title1": "Project Introduction",
+      "title2": "Research & Concept",
+      "description": "We start with marketing research, sharing case studies that demonstrate you reach goals faster.",
+      "iconAlt": "Research icon"
+    },
+    "step2": {
+      "title1": "Operational Tasks",
+      "title2": "Create & Promote",
+      "description": "We're achieving goals through unique action plans transferred to planned dedicated team tasks",
+      "iconAlt": "Creation icon"
+    },
+    "step3": {
+      "title1": "Progress Tracking",
+      "title2": "Reports & Analysis",
+      "description": "We start with marketing research, sharing case studies that demonstrate you reach goals faster.",
+      "iconAlt": "Analysis icon"
+    }
+  },
+  "services": {
+    "header": {
+      "title": "Services",
+      "imageAlt": "About page header image"
+    }
+  },
+  "breadServices": {
+    "home": "Home",
+    "Services": "Services"
+  },
+  "who": {
+    "title": "Who We Are",
+    "imageAlt": "About Arkan Marketing Agency",
+    "agencyName": "Arkan -",
+    "agencyTitle": "Digital Marketing Agency",
+    "description1": "is a values-driven Digital agency dedicated to empowering our customers.",
+    "description2": "Over the years, we have worked with Fortune 500s and brand-new startups. We help ambitious businesses like yours generate more profits by building awareness, driving web traffic, connecting with customers, and growing overall sales. Give us a call.",
+    "buttonText": "Let's grow your business"
+  },
+  "commonWho": {
+    "decorationStarAlt": "Decorative star icon",
+    "decorationBallAlt": "Decorative ball graphic",
+    "logoAlt": "Arkan Marketing Agency logo",
+    "buttonIconAlt": "Action icon"
+  },
+  "servicesOne": {
+    "title": "Our Services",
+    "subtitle": "Smart Solutions for Modern Brands",
+    "advertising": {
+      "title": "Advertising strategies",
+      "description": "Create and manage top-performing social campaigns and start developing a dedicated customer fan base.",
+      "iconAlt": "Advertising strategies icon"
+    },
+    "content": {
+      "title": "Creative Content Creation",
+      "description": "You can provide the answers that your potential customers are trying to find, so you can become the industry.",
+      "iconAlt": "Content creation icon"
+    },
+    "social": {
+      "title": "Social media campaigns",
+      "description": "Target your ideal search phrases and get found at the top of Google's search results. PPC allows you.",
+      "iconAlt": "Social media icon"
+    },
+    "design": {
+      "title": "Graphic Design",
+      "description": "We provide graphic design services for logos, branding, print and digital materials, packaging, web design and UI",
+      "iconAlt": "Graphic design icon"
+    },
+    "motion": {
+      "title": "Motion Graphic",
+      "description": "We create captivating motion graphics for web, social media, presentations, and video production.",
+      "iconAlt": "Motion graphics icon"
+    },
+    "video": {
+      "title": "Video Editing",
+      "description": "We provide video editing services for seamless transitions, visual effects, color grading, and motion graphics.",
+      "iconAlt": "Video editing icon"
+    },
+    "seo": {
+      "title": "SEO Optimization",
+      "description": "We optimize websites for better visibility and rankings through SEO techniques.",
+      "iconAlt": "SEO optimization icon"
+    },
+    "web": {
+      "title": "Web Development",
+      "description": "Create a seamless online experience for your audience with our professional web development service.",
+      "iconAlt": "Web development icon"
+    },
+    "app": {
+      "title": "APP Development",
+      "description": "Bring your app ideas to life with our expert development service. Create innovative solutions for your users.",
+      "iconAlt": "App development icon"
+    }
   }
 }
