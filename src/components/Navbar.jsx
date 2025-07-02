@@ -55,9 +55,11 @@ const Navbar = () => {
       <div className="max-w-[1350px] mx-auto md:px-[120px] px-4 py-1 gap-[32px] sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <img src={logo} alt={t("navHome")} className="w-[71.72px]" />
-          </div>
+          <Link to="/">
+            <div className="flex-shrink-0 flex items-center">
+              <img src={logo} alt={t("navHome")} className="w-[71.72px]" />
+            </div>
+          </Link>
 
           <div className="hidden lg:flex items-center space-x-8">
             <NavLink to="/">{t("navHome")}</NavLink>
