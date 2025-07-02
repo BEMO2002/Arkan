@@ -13,10 +13,15 @@ import ProjectsDashboard from "./AdminDashboard/ProjectsDashboard";
 import AddCategory from "./AdminDashboard/AddCategory";
 import ContactForm from "./AdminDashboard/ContactForm";
 import CreatServices from "./AdminDashboard/CreatServices";
+import Login from "./LoginPage/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
   
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -36,7 +41,13 @@ function App() {
         <Route path="/contact" element={<Layout />}>
           <Route index element={<MainContact />} />
         </Route>
-        <Route path="/admin" element={<LayoutDashboard />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={
+          <ProtectedRoute>
+            <LayoutDashboard />
+          </ProtectedRoute>
+        }>
+          <Route index element={<ProjectsDashboard />} />
           <Route path="/admin/projects" element={<ProjectsDashboard />} />
           <Route path="/admin/add-category" element={<AddCategory />} />
           <Route path="/admin/contact-form" element={<ContactForm />} />
