@@ -6,6 +6,8 @@ import HomePage from "./HomePage";
 import AboutPage from "./AboutPage/base";
 import ServicesPage from "./ServicesPage/Source";
 import PortfolioMain from "./PortfolioPage/PotfolioMain";
+import MainTeam from "./TeamPage/MainTeam";
+import MainContact from "./ContactPage/MainContact";
 
 function App() {
   return (
@@ -22,6 +24,12 @@ function App() {
         </Route>
         <Route path="/portfolio" element={<Layout />}>
           <Route index element={<PortfolioMain />} />
+        </Route>
+        <Route path="/team" element={<Layout />}>
+          <Route index element={<MainTeam />} />
+        </Route>
+        <Route path="/contact" element={<Layout />}>
+          <Route index element={<MainContact />} />
         </Route>
       </Routes>
     </BrowserRouter>

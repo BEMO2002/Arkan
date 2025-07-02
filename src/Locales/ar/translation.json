@@ -276,5 +276,36 @@
   "breadcrumbsPortfolio": {
     "home": "الرئيسية",
     "portfolio": "معرض الأعمال"
+  },
+  "team": {
+    "header": {
+      "title": "فريقنا",
+      "imageAlt": "صورة رأس صفحة فريقنا"
+    }
+  },
+  "breadcrumbsTeam": {
+    "home": "الرئيسية",
+    "team": "فريقنا"
+  },
+  "teamMember": {
+    "title": "فريقنا",
+    "memberName": "إيستر هوارد",
+    "memberPosition": "مصمم ويب",
+    "memberAlt": "عضو الفريق {number}"
+  },
+  "commonMember": {
+    "decorationStarAlt": "أيقونة نجمة زخرفية",
+    "decorationEllipseAlt": "رسم بيضاوي زخرفي",
+    "decorationRightAlt": "رسم جانبي زخرفي"
+  },
+  "contact": {
+    "header": {
+      "title": "اتصل بنا",
+      "imageAlt": "صورة رأس صفحة اتصل بنا"
+    }
+  },
+  "breadcrumbsContact": {
+    "home": "الرئيسية",
+    "contact": "اتصل بنا"
   }
 }

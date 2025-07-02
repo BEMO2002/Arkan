@@ -286,5 +286,36 @@
   "breadcrumbsPortfolio": {
     "home": "Home",
     "portfolio": "Portfolio"
+  },
+  "team": {
+    "header": {
+      "title": "Our Team",
+      "imageAlt": "Team page header image"
+    }
+  },
+  "breadcrumbsTeam": {
+    "home": "Home",
+    "team": "Our Team"
+  },
+  "teamMember": {
+    "title": "Our Team",
+    "memberName": "Esther Howard",
+    "memberPosition": "Web Designer",
+    "memberAlt": "Team member {number}"
+  },
+  "commonMember": {
+    "decorationStarAlt": "Decorative star icon",
+    "decorationEllipseAlt": "Decorative ellipse graphic",
+    "decorationRightAlt": "Decorative right graphic"
+  },
+  "contact": {
+    "header": {
+      "title": "Contact Us",
+      "imageAlt": "Contact page header image"
+    }
+  },
+  "breadcrumbsContact": {
+    "home": "Home",
+    "contact": "Contact Us"
   }
 }
