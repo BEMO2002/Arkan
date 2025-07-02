@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Head from "../assets/contact/تصميم بدون عنوان (24) 1.png";
+import Head from "../assets/contact/تصميم بدون عنوان (27) 1.png";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 

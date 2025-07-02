@@ -82,16 +82,19 @@ const Projects = () => {
   return (
     <section className="py-[90px] px-4 sm:px-6 lg:px-8 relative">
       <div className="flex items-center justify-center space-x-2 mb-10">
-        <img src={star} alt={t("why.starAlt")} className="w-6 h-6" />
+        <img
+          src={star}
+          alt={t("common.decorationStarAlt")}
+          className="w-6 h-6"
+        />
         <h3 className="text-baseTwo text-[24px] mb-2 font-[700] leading-[36px]">
-          our projects
+          {t("portfolioTwo.sectionTitle")}
         </h3>
       </div>
       <h2 className="text-base text-center md:text-[32px] text-[25px] font-[700] leading-[44px] mb-8">
-        View Some of Our Works <br />
-        <span> and Case Studies for Clients</span>
+        {t("portfolioTwo.mainTitle.line1")} <br />
+        <span>{t("portfolioTwo.mainTitle.line2")}</span>
       </h2>
-
       {/* Filter tabs with underline */}
       <div className="flex justify-center gap-8 my-12 flex-wrap">
         {["all", "design", "development", "mobile"].map((filter) => (

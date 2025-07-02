@@ -117,7 +117,7 @@ const ProgressDashboard = () => {
         </h3>
       </div>
       <h2 className="lg:text-[32px] text-[22px] font-[700] mb-12 text-gray-800 text-center">
-        <span className="text-primary">100%</span>
+        <span className="text-primary">{t("progress.percent")}</span>
         {t("progress.digitalMarketingSolutions")}
       </h2>
 

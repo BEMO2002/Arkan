@@ -51,7 +51,8 @@
     "keywordsResults": "نتائج الكلمات المفتاحية",
     "googleAnalytics": " تحليلات جوجل",
     "offPageSeo": "تحسين السيو",
-    "digitalMarketingSolutions": " خبراء حلول التسويق الرقمي بنسبة"
+    "digitalMarketingSolutions": " خبراء حلول التسويق الرقمي بنسبة 100% ",
+    "percent": ""
   },
 
   "common": {
@@ -70,20 +71,16 @@
 
     "people": {
       "mohamed": {
-        "name": "محمد أحمد",
-        "position": "اختصاصي التسويق الرقمي"
+        "name": "محمد أحمد"
       },
       "layla": {
-        "name": "ليلى حسين",
-        "position": "المؤسسة"
+        "name": "ليلى حسين"
       },
       "asmaa": {
-        "name": "أسماء ياسين",
-        "position": "مديرة العمليات"
+        "name": "أسماء ياسين"
       },
       "samy": {
-        "name": "سامي خالد",
-        "position": "مصمم منتجات"
+        "name": "سامي خالد"
       }
     }
   },
@@ -98,7 +95,7 @@
   "footer": {
     "contacts": {
       "title": "اتصل بنا",
-      "address": "2715 شارع آش، سان خوسيه، داكوتا الجنوبية 83475",
+      "address": "15 شارع مصطفى النحاس ، الحى الثامن ،مدينة نصر،القاهرة،مصر",
       "email": "neveeh.simmons@example.com",
       "hours": "9 صباحًا : 5 عصرا",
       "phone": "201221490232+"
@@ -274,6 +271,13 @@
     "header": {
       "title": "معرض الأعمال",
       "imageAlt": "صورة رأس صفحة معرض الأعمال"
+    }
+  },
+  "portfolioTwo": {
+    "sectionTitle": "مشاريعنا",
+    "mainTitle": {
+      "line1": "اطلع على بعض أعمالنا",
+      "line2": "ودراسات الحالة للعملاء"
     }
   },
   "breadcrumbsPortfolio": {

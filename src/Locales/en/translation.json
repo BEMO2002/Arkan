@@ -51,7 +51,8 @@
     "keywordsResults": "Keywords Results",
     "googleAnalytics": "Google Analytics",
     "offPageSeo": "Off Page SEO",
-    "digitalMarketingSolutions": " Digital Marketing Solutions Experts"
+    "digitalMarketingSolutions": " Digital Marketing Solutions Experts",
+    "percent": "100%"
   },
   "common": {
     "starAlt": "Decorative star icon",
@@ -68,20 +69,16 @@
     },
     "people": {
       "mohamed": {
-        "name": "Mohamed Ahmed",
-        "position": "Digital Marketing "
+        "name": "Mohamed Ahmed"
       },
       "layla": {
-        "name": "Layla Hussein",
-        "position": "Founder,"
+        "name": "Layla Hussein"
       },
       "asmaa": {
-        "name": "Asmaa Yassin",
-        "position": "Operations Manager"
+        "name": "Asmaa Yassin"
       },
       "samy": {
-        "name": "Samy Khaled",
-        "position": "Product Designer"
+        "name": "Samy Khaled"
       }
     }
   },
@@ -96,7 +93,7 @@
   "footer": {
     "contacts": {
       "title": "Contacts",
-      "address": "2715 Ash Dr. San Jose, South Dakota 83475",
+      "address": "15 Mostafa El-Nahas Street, 8th District, Nasr City, Cairo, Egypt",
       "email": "neveeh.simmons@example.com",
       "hours": "5 pm : 9 am",
       "phone": "+201221490232"
@@ -283,6 +280,13 @@
     "header": {
       "title": "Portfolio",
       "imageAlt": "Portfolio page header image"
+    }
+  },
+  "portfolioTwo": {
+    "sectionTitle": "Our Projects",
+    "mainTitle": {
+      "line1": "View Some of Our Works",
+      "line2": "and Case Studies for Clients"
     }
   },
   "breadcrumbsPortfolio": {
