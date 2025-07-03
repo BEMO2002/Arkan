@@ -103,6 +103,7 @@ const ContactForm = () => {
         toast.success("Message sent successfully!", {
           position: "top-right",
           autoClose: 3000,
+          theme: "colored",
         });
         setFormData({
           Name: "",
@@ -129,7 +130,6 @@ const ContactForm = () => {
 
   return (
     <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8  ">
-      <ToastContainer />
       <div
         className="max-w-6xl mx-auto rounded-[30px] bg-white shadow-md p-2 sm:p-4 "
         style={{

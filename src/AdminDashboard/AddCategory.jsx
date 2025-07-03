@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaTrash } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -47,7 +47,9 @@ const AddCategory = () => {
       await axios.post("https://arkan2.runasp.net/api/Category", {
         name: newCategory,
       });
-      toast.success("Category added successfully!");
+      toast.success("Category added successfully!", {
+        theme: "colored",
+      });
       setNewCategory("");
       setShowModal(false);
       fetchCategories();
@@ -58,7 +60,6 @@ const AddCategory = () => {
 
   return (
     <div className="p-6 min-h-screen ">
-      <ToastContainer />
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Categories</h2>
         <button

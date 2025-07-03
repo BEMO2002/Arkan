@@ -96,7 +96,7 @@ const Projects = () => {
         <span>{t("portfolioTwo.mainTitle.line2")}</span>
       </h2>
       {/* Filter tabs with underline */}
-      <div className="flex justify-center gap-8 my-12 flex-wrap">
+      <div className="flex justify-center  gap-5 my-12 flex-wrap">
         {["all", "design", "development", "mobile"].map((filter) => (
           <button
             key={filter}
@@ -149,14 +149,14 @@ const Projects = () => {
                     backdropFilter: "blur(6.92307710647583px)",
                   }}
                 >
-                  <div className="w-20 h-20 bg-[#45474B] rounded-full absolute bottom-0 right-2 flex items-center justify-center shadow z-10">
+                  <div className="w-15 h-15 md:w-20 md:h-20 bg-[#45474B] rounded-full absolute bottom-0 right-2 flex items-center justify-center shadow z-10">
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center font-extrabold justify-center text-white"
                     >
-                      <LuEye size={35} className="" />
+                      <LuEye size={25} className="" />
                     </a>
                   </div>
 

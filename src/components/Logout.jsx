@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 import { FaSignOutAlt } from "react-icons/fa";
- 
+
 const Logout = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -12,7 +12,9 @@ const Logout = () => {
     // Use the logout function from AuthContext
     logout();
 
-    toast.success("Logged out successfully");
+    toast.success("Logged out successfully", {
+      theme: "colored",
+    });
     navigate("/login");
   };
 

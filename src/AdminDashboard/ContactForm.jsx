@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaTrash, FaCheck, FaEdit } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -31,7 +31,9 @@ const ContactFormDashboard = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://arkan2.runasp.net/api/ContactForm/${id}`);
-      toast.success("Contact form deleted successfully!");
+      toast.success("Contact form deleted successfully!", {
+        theme: "colored",
+      });
       fetchContacts();
     } catch {
       toast.error("Failed to delete contact form");
@@ -149,7 +151,6 @@ const ContactFormDashboard = () => {
 
   return (
     <div className="p-6 min-h-screen ">
-      <ToastContainer />
       <h2 className="text-3xl font-extrabold mb-8 text-center text-gray-800 tracking-tight drop-shadow-sm">
         Contact Forms
       </h2>
@@ -186,16 +187,20 @@ const ContactFormDashboard = () => {
                 <span className="font-semibold">Name:</span> {contact.name}
               </div>
               <div className="mb-1">
-                <span className="font-semibold">Phone:</span> {contact.phoneNumber}
+                <span className="font-semibold">Phone:</span>{" "}
+                {contact.phoneNumber}
               </div>
               <div className="mb-1">
-                <span className="font-semibold">Business Field:</span> {contact.businessField}
+                <span className="font-semibold">Business Field:</span>{" "}
+                {contact.businessField}
               </div>
               <div className="mb-1">
-                <span className="font-semibold">Message:</span> {contact.message}
+                <span className="font-semibold">Message:</span>{" "}
+                {contact.message}
               </div>
               <div className="mb-1">
-                <span className="font-semibold">Submitted At:</span> {new Date(contact.submittedAt).toLocaleString()}
+                <span className="font-semibold">Submitted At:</span>{" "}
+                {new Date(contact.submittedAt).toLocaleString()}
               </div>
               <div className="flex gap-3 mt-4 justify-end">
                 {contact.status !== "Accepted" && (
@@ -230,10 +235,14 @@ const ContactFormDashboard = () => {
             >
               ×
             </button>
-            <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">Edit Contact</h3>
+            <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">
+              Edit Contact
+            </h3>
             <form onSubmit={handleUpdate} className="space-y-5">
               <div>
-                <label className="block text-sm font-medium mb-1 text-gray-700">Name</label>
+                <label className="block text-sm font-medium mb-1 text-gray-700">
+                  Name
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -244,7 +253,9 @@ const ContactFormDashboard = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1 text-gray-700">Phone Number</label>
+                <label className="block text-sm font-medium mb-1 text-gray-700">
+                  Phone Number
+                </label>
                 <input
                   type="text"
                   name="phoneNumber"
@@ -255,7 +266,9 @@ const ContactFormDashboard = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1 text-gray-700">Business Field</label>
+                <label className="block text-sm font-medium mb-1 text-gray-700">
+                  Business Field
+                </label>
                 <input
                   type="text"
                   name="businessField"
@@ -266,7 +279,9 @@ const ContactFormDashboard = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1 text-gray-700">Message</label>
+                <label className="block text-sm font-medium mb-1 text-gray-700">
+                  Message
+                </label>
                 <textarea
                   name="message"
                   value={selectedContact.message || ""}
@@ -276,7 +291,9 @@ const ContactFormDashboard = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1 text-gray-700">Status</label>
+                <label className="block text-sm font-medium mb-1 text-gray-700">
+                  Status
+                </label>
                 <select
                   name="status"
                   value={selectedContact.status || ""}

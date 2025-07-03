@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/home/logo(arkan).png";
-
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -42,7 +41,9 @@ const Login = () => {
         // Use the login function from AuthContext
         login({ ...user, token });
 
-        toast.success("Login successful!");
+        toast.success("Welcome To Admin Dashboard !", {
+          theme: "colored",
+        });
         navigate("/admin/projects");
       } else {
         toast.error("Login failed. Please check your credentials.");
@@ -59,7 +60,8 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+      <div className="max-w-md w-full space-y-8 ">
+
         <div className="text-center">
           <img src={logo} alt="" className="w-50 mx-auto" />
           <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
@@ -102,7 +104,7 @@ const Login = () => {
                     type="email"
                     autoComplete="email"
                     required
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 text-gray-900 placeholder-gray-500"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2  focus:border-transparent transition duration-200 text-gray-900 placeholder-gray-500"
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleChange}
@@ -139,7 +141,7 @@ const Login = () => {
                     type={showPassword ? "text" : "password"}
                     autoComplete="current-password"
                     required
-                    className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 text-gray-900 placeholder-gray-500"
+                    className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition duration-200 text-gray-900 placeholder-gray-500"
                     placeholder="Enter your password"
                     value={formData.password}
                     onChange={handleChange}
@@ -195,7 +197,7 @@ const Login = () => {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4  focus:outline-0 border-gray-300 rounded"
                 />
                 <label
                   htmlFor="remember-me"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaTrash } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -117,7 +117,6 @@ const ProjectsDashboard = () => {
 
   return (
     <div className="p-4 min-h-screen ">
-      <ToastContainer />
       <div className="flex justify-end mb-6">
         <button
           onClick={openModal}

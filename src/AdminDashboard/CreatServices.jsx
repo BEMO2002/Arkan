@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaTrash, FaEdit, FaCheck, FaPlus } from "react-icons/fa";
+import { FaTrash, FaEdit, FaCheck, FaPlus, FaThemeco } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const CreatServices = () => {
@@ -160,7 +160,9 @@ const CreatServices = () => {
       );
 
       if (response.ok) {
-        toast.success("Service created successfully!");
+        toast.success("Service created successfully!", {
+          theme: "colored",
+        });
         setShowModal(false);
         setForm({
           ClientName: "",
@@ -201,19 +203,6 @@ const CreatServices = () => {
 
   return (
     <div className="p-6 min-h-screen">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-
       {/* Add New Service Button */}
       <div className="flex justify-end mb-6">
         <button
