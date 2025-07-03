@@ -96,7 +96,7 @@
     "contacts": {
       "title": "اتصل بنا",
       "address": "15 شارع مصطفى النحاس ، الحى الثامن ،مدينة نصر،القاهرة،مصر",
-      "email": "neveeh.simmons@example.com",
+      "email": "arkancompany995@gmail.com",
       "hours": "9 صباحًا : 5 عصرا",
       "phone": "201221490232+"
     },
@@ -137,7 +137,7 @@
   },
   "aboutOne": {
     "section1": {
-      "title": "Who we are",
+      "title": "من نحن",
       "imageAlt": "About our company",
       "heading": {
         "line1": "نحن من سيجدد نظرتك",
@@ -202,6 +202,16 @@
       "description": "نبدأ بأبحاث التسويق ، ونشارك دراسات الحالة التي توضح أنك تصل إلى الأهداف بشكل أسرع.",
       "iconAlt": "أيقونة تحليل"
     }
+  },
+  "services": {
+    "header": {
+      "title": "خدماتنا",
+      "imageAlt": "About page header image"
+    }
+  },
+  "breadServices": {
+    "home": "الرئيسية",
+    "Services": "خدماتنا"
   },
   "who": {
     "title": "من نحن",

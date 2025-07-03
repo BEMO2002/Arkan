@@ -12,7 +12,7 @@ import { FiLinkedin } from "react-icons/fi";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Link } from "react-router-dom";
 const ContactForm = () => {
   const businessFields = [
     "SEO Optimization",
@@ -34,6 +34,7 @@ const ContactForm = () => {
     Email: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -44,35 +45,36 @@ const ContactForm = () => {
   };
 
   const validateForm = () => {
+    const newErrors = {};
     if (!formData.Name.trim()) {
-      toast.error("Name is required.", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-      return false;
+      newErrors.Name = "Name is required.";
+    }
+    if (!formData.Email.trim()) {
+      newErrors.Email = "Email is required.";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.Email)) {
+        newErrors.Email = "Please enter a valid email address.";
+      }
     }
     if (!formData.PhoneNumber.trim()) {
-      toast.error("Phone Number is required.", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-      return false;
+      newErrors.PhoneNumber = "Phone Number is required.";
+    } else {
+      const phoneRegex = /^\d{9,15}$/;
+      if (!phoneRegex.test(formData.PhoneNumber)) {
+        newErrors.PhoneNumber = "Phone Number must be 9-15 digits.";
+      }
     }
     if (!formData.BusinessField) {
-      toast.error("Business Field is required.", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-      return false;
+      newErrors.BusinessField = "Business Field is required.";
     }
     if (!formData.Message.trim()) {
-      toast.error("Message is required.", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-      return false;
+      newErrors.Message = "Message is required.";
+    } else if (formData.Message.trim().length < 10) {
+      newErrors.Message = "Message must be at least 10 characters.";
     }
-    return true;
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
@@ -80,6 +82,8 @@ const ContactForm = () => {
 
     if (!validateForm()) {
       return;
+    } else {
+      setErrors({});
     }
 
     setIsLoading(true);
@@ -114,7 +118,7 @@ const ContactForm = () => {
         });
       }
     } catch (error) {
-      console.error("API error:", error.response?.data || error.message); // Debugging log
+      console.error("API error:", error.response?.data || error.message);
       toast.error(
         error.response?.data?.message ||
           "Failed to send message. Please try again.",
@@ -146,23 +150,32 @@ const ContactForm = () => {
               <div className="mb-8 flex items-center justify-start ml-20 gap-3">
                 <FaEnvelope className="text-xl" />
                 <p className="text-base sm:text-lg font-semibold">
-                  contact@sanatcreatives.com
+                  arkancompany995@gmail.com
                 </p>
               </div>
 
               <div className="mb-8 flex items-center justify-start ml-20 gap-3">
                 <FaMapMarkerAlt className="text-xl" />
-                <p className="text-base sm:text-lg font-semibold">
-                  08 Triveni Tower 3rd Floor, Central Avenue
+                <p className="text-base md:text-[17px] font-semibold">
+                  15 Mostafa El-Nahas Street, 8th District, Nasr City, Cairo,
+                  Egypt
                 </p>
               </div>
             </div>
 
             <div className="flex items-center w-fit mx-auto mt-30 justify-center   p-3 bg-[#FEF4E8] rounded-[16px] space-x-4">
-              <CiFacebook className="w-6 h-6 hover:text-gray-600 cursor-pointer" />
-              <FaInstagram className="w-5 h-5 hover:text-gray-600 cursor-pointer" />
-              <FaXTwitter className="w-5 h-5 hover:text-gray-600 cursor-pointer" />
-              <FiLinkedin className="w-5 h-5 hover:text-gray-600 cursor-pointer" />
+              <Link to="https://www.facebook.com/share/1BnqRzJ4zh/">
+                <CiFacebook className="w-6 h-6 hover:text-gray-600 cursor-pointer" />
+              </Link>
+              <Link to="https://www.instagram.com/arkan220a/">
+                <FaInstagram className="w-5 h-5 hover:text-gray-600 cursor-pointer" />
+              </Link>
+              <Link to="https://x.com/Arkan227286">
+                <FaXTwitter className="w-5 h-5 hover:text-gray-600 cursor-pointer" />
+              </Link>
+              <Link to="https://www.linkedin.com/company/arkan-company22">
+                <FiLinkedin className="w-5 h-5 hover:text-gray-600 cursor-pointer" />
+              </Link>
             </div>
           </div>
 
@@ -181,9 +194,12 @@ const ContactForm = () => {
                   id="fullName"
                   value={formData.Name}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border-0 border-b border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
+                  className="w-full px-3 py-3 border-1 rounded border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
                   required
                 />
+                {errors.Name && (
+                  <p className="text-red-500 text-xs mt-1">{errors.Name}</p>
+                )}
               </div>
 
               <div className="mb-6">
@@ -198,8 +214,11 @@ const ContactForm = () => {
                   id="Email"
                   value={formData.Email}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border-0 border-b border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
+                  className="w-full px-3 py-3 border-1 rounded  border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
                 />
+                {errors.Email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.Email}</p>
+                )}
               </div>
 
               <div className="mb-6">
@@ -210,7 +229,7 @@ const ContactForm = () => {
                   Phone Number
                 </label>
                 <div className="flex items-center">
-                  <span className="px-3 py-2 border-0 border-b border-gray-300 text-sm sm:text-base">
+                  <span className="px-3  py-3 border-1 border-r-0 rounded-tr-none rounded-br-none rounded border-gray-300 text-sm sm:text-base">
                     +20
                   </span>
                   <input
@@ -218,10 +237,13 @@ const ContactForm = () => {
                     id="PhoneNumber"
                     value={formData.PhoneNumber}
                     onChange={handleChange}
-                    className="flex-1 px-3 py-2 border-0 border-b border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
+                    className="flex-1 px-3 py-3 border-1 rounded rounded-tl-none rounded-bl-none border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
                     required
                   />
                 </div>
+                {errors.PhoneNumber && (
+                  <p className="text-red-500 text-xs mt-1">{errors.PhoneNumber}</p>
+                )}
               </div>
 
               <div className="mb-6">
@@ -235,7 +257,7 @@ const ContactForm = () => {
                   id="BusinessField"
                   value={formData.BusinessField}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border-0 border-b border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
+                  className="w-full px-3 py-3 border-1 rounded border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
                   required
                 >
                   <option value="">Select a field</option>
@@ -245,6 +267,9 @@ const ContactForm = () => {
                     </option>
                   ))}
                 </select>
+                {errors.BusinessField && (
+                  <p className="text-red-500 text-xs mt-1">{errors.BusinessField}</p>
+                )}
               </div>
 
               <div className="mb-8">
@@ -259,9 +284,12 @@ const ContactForm = () => {
                   rows="4"
                   value={formData.Message}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border-0 border-b border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
+                  className="w-full px-3 py-3 border-1 rounded border-gray-300 focus:ring-0 focus:outline-0 bg-transparent text-sm sm:text-base"
                   required
                 ></textarea>
+                {errors.Message && (
+                  <p className="text-red-500 text-xs mt-1">{errors.Message}</p>
+                )}
               </div>
 
               <button
