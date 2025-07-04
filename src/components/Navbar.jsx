@@ -168,10 +168,10 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="w-full px-4 pt-6">
+            <div className="w-full  px-4 pt-6">
               <Link
                 to="/contact"
-                className="w-full flex justify-center items-center gap-2 px-4 py-3 font-[700] border border-transparent text-[16px] leading-[26px] rounded-[8px] text-white bg-primary hover:bg-second transition-colors duration-300"
+                className="w-[347PX] h-[48px] flex justify-center items-center gap-2 px-4 py-3 font-[700] border border-transparent text-[16px] leading-[26px] rounded-[8px] text-white bg-primary hover:bg-second transition-colors duration-300"
               >
                 <img src={icon} alt="" />
                 {t("heroButton")}
