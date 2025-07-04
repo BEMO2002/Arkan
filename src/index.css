@@ -20,13 +20,11 @@
 }
 
 
-/* السويتشر دايمًا LTR */
 .language-switcher {
     direction: ltr;
     font-family: 'Cairo', sans-serif;
 }
 
-/* تثبيت السويتشر LTR في RTL كمان */
 [dir='rtl'] .language-switcher {
     direction: ltr;
 }
