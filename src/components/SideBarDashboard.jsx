@@ -3,9 +3,10 @@ import {
   FaUsers,
   FaProjectDiagram,
   FaEnvelope,
-  FaPlus,
+  FaPlus,   
   FaUser,
 } from "react-icons/fa";
+import { AiOutlineTeam } from "react-icons/ai";
 import logo from "../assets/home/logo(arkan).png";
 import Logout from "./Logout";
 import { useAuth } from "../context/AuthContext";
@@ -19,10 +20,20 @@ const navLinks = [
     href: "/admin/contact-form",
   },
   { name: "Creat Services", icon: <FaPlus />, href: "/admin/creat-services" },
+  { name: "Team Members", icon: <AiOutlineTeam />, href: "/admin/team-members" },
+  
 ];
 
 const SideBarDashboard = () => {
-  const { user } = useAuth();
+  const { user, roles } = useAuth();
+
+  // تحديد الروابط حسب الدور
+  let filteredLinks = navLinks;
+  if (roles && roles.length > 0) {
+    if (roles.includes("Sales") && !roles.includes("Admin")) {
+      filteredLinks = navLinks.filter(link => link.name === "Creat Services");
+    }
+  }
 
   return (
     <aside className="h-screen w-64 bg-white flex flex-col justify-between shadow-lg fixed left-0 top-0 z-40">
@@ -51,18 +62,21 @@ const SideBarDashboard = () => {
 
         {/* Nav Links */}
         <nav className="mt-8 flex flex-col gap-8 px-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg text-base hover:text-white hover:bg-second transition-colors duration-200 text-lg font-medium group"
-            >
-              <span className="text-xl group-hover:scale-110 transition-transform duration-200">
-                {link.icon}
-              </span>
-              {link.name}
-            </a>
-          ))}
+          {filteredLinks.map((link) => {
+            const isActive = window.location.pathname === link.href;
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base hover:text-white hover:bg-second transition-colors duration-200 text-lg font-medium group ${isActive ? "bg-second text-white" : ""}`}
+              >
+                <span className="text-xl group-hover:scale-110 transition-transform duration-200">
+                  {link.icon}
+                </span>
+                {link.name}
+              </a>
+            );
+          })}
         </nav>
       </div>
 

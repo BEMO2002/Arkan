@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import star from "../assets/home/Star 2.png";
 import Rectangle from "../assets/Poertfolio/Ellipse 4.png";
 import Right from "../assets/Poertfolio/right.png";
-// import { TfiArrowTopRight } from "react-icons/tfi";
+
 import { ClipLoader } from "react-spinners";
 import { LuEye } from "react-icons/lu";
 const Projects = () => {
@@ -24,7 +24,9 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("https://arkan2.runasp.net/api/Service");
+        const response = await fetch(
+          "https://arkan2.runasp.net/api/Service?pageSize=100&pageIndex=1"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch projects");
         }

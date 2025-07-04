@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
+import api from '../utils/axiosConfig';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaTrash } from "react-icons/fa";
@@ -21,9 +21,7 @@ const ProjectsDashboard = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get(
-          "https://arkan2.runasp.net/api/Service"
-        );
+        const response = await api.get("/Service?pageSize=100&pageIndex=1");
         setProjects(response.data.data.items);
       } catch {
         // No need to set error here, as it's not used in the component
@@ -39,7 +37,7 @@ const ProjectsDashboard = () => {
     setShowModal(true);
     if (categories.length === 0) {
       try {
-        const res = await axios.get("https://arkan2.runasp.net/api/Category");
+        const res = await api.get("/Category");
         setCategories(res.data.data);
       } catch {
         toast.error("Failed to load categories");
@@ -78,13 +76,13 @@ const ProjectsDashboard = () => {
     formData.append("Attachment", form.attachment);
     formData.append("CategoryId", form.categoryId);
     try {
-      await axios.post("https://arkan2.runasp.net/api/Service", formData, {
+      await api.post("/Service", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Project added successfully!");
       closeModal();
       // Optionally, refresh projects list
-      const response = await axios.get("https://arkan2.runasp.net/api/Service");
+      const response = await api.get("/Service?pageSize=100&pageIndex=1");
       setProjects(response.data.data.items);
     } catch {
       toast.error("Failed to add project.");
@@ -93,7 +91,7 @@ const ProjectsDashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://arkan2.runasp.net/api/Service/${id}`);
+      await api.delete(`/Service/${id}`);
       setProjects((prev) => prev.filter((project) => project.id !== id));
       toast.success("Project deleted successfully!", {
         position: "top-right",

@@ -17,8 +17,29 @@ import Login from "./LoginPage/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import TeamMembers from "./AdminDashboard/TeamMembers";
+import RoleProtectedRoute from "./components/RoleProtectedRoute";
+import Unauthorized from "./components/Unauthorized";
+import SalesDashboard from "./AdminDashboard/SalesDashboard";
+import { useAuth } from "./context/AuthContext";
   
 function App() {
+  const { roles, loading } = useAuth();
+
+  const AdminRedirect = () => {
+    if (loading) return null;
+    if (roles && roles.includes("Admin")) {
+      window.location.replace("/admin/projects");
+      return null;
+    } else if (roles && roles.includes("Sales")) {
+      window.location.replace("/admin/sales-dashboard");
+      return null;
+    } else {
+      window.location.replace("/unauthorized");
+      return null;
+    }
+  };
+
   return (
     <BrowserRouter>
       <ToastContainer position="top-right" autoClose={3000} />
@@ -43,16 +64,42 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={
-          <ProtectedRoute>
+          <RoleProtectedRoute allowedRoles={["Admin", "Sales"]}>
             <LayoutDashboard />
-          </ProtectedRoute>
+          </RoleProtectedRoute>
         }>
-          <Route index element={<ProjectsDashboard />} />
-          <Route path="/admin/projects" element={<ProjectsDashboard />} />
-          <Route path="/admin/add-category" element={<AddCategory />} />
-          <Route path="/admin/contact-form" element={<ContactForm />} />
-          <Route path="/admin/creat-services" element={<CreatServices />} />
+          <Route path="projects" element={
+            <RoleProtectedRoute allowedRoles={["Admin"]}>
+              <ProjectsDashboard />
+            </RoleProtectedRoute>
+          } />
+          <Route path="add-category" element={
+            <RoleProtectedRoute allowedRoles={["Admin"]}>
+              <AddCategory />
+            </RoleProtectedRoute>
+          } />
+          <Route path="contact-form" element={
+            <RoleProtectedRoute allowedRoles={["Admin"]}>
+              <ContactForm />
+            </RoleProtectedRoute>
+          } />
+          <Route path="team-members" element={
+            <RoleProtectedRoute allowedRoles={["Admin"]}>
+              <TeamMembers />
+            </RoleProtectedRoute>
+          } />
+          <Route path="creat-services" element={
+            <RoleProtectedRoute allowedRoles={["Admin", "Sales"]}>
+              <CreatServices />
+            </RoleProtectedRoute>
+          } />
+          <Route path="sales-dashboard" element={
+            <RoleProtectedRoute allowedRoles={["Sales"]}>
+              <SalesDashboard />
+            </RoleProtectedRoute>
+          } />
         </Route>
+        <Route path="/unauthorized" element={<Unauthorized />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaTrash, FaEdit, FaCheck, FaPlus, FaThemeco } from "react-icons/fa";
+import { FaTrash, FaEdit, FaCheck, FaPlus } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
+import api from "../utils/axiosConfig";
+import { useAuth } from "../context/AuthContext";
 
 const CreatServices = () => {
+  const { roles } = useAuth();
+  const isAdmin = roles && roles.includes("Admin");
+  const isSales = roles && roles.includes("Sales");
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,15 +28,17 @@ const CreatServices = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [formLoading, setFormLoading] = useState(false);
 
+  // مراقبة تغييرات services state
+  useEffect(() => {
+    console.log("Services state changed:", services.length, "items");
+  }, [services]);
+
   // Fetch services
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch(
-          "https://arkan2.runasp.net/api/Form/getAll"
-        );
-        const data = await response.json();
-        setServices(data.data.items || []);
+        const response = await api.get("/Form/getAll?pageSize=100&pageIndex=1");
+        setServices(response.data.data.items || []);
       } catch {
         setError("Failed to fetch services");
         toast.error("Failed to fetch services");
@@ -45,9 +52,9 @@ const CreatServices = () => {
   // Fetch categories when modal opens
   useEffect(() => {
     if (showModal) {
-      fetch("https://arkan2.runasp.net/api/Category")
-        .then((res) => res.json())
-        .then((data) => setCategories(data.data || []))
+      api
+        .get("/Category")
+        .then((res) => setCategories(res.data.data || []))
         .catch(() => {
           setCategories([]);
           toast.error("Failed to fetch categories");
@@ -60,17 +67,11 @@ const CreatServices = () => {
     if (!window.confirm("Are you sure you want to delete this service?"))
       return;
     try {
-      const response = await fetch(`https://arkan2.runasp.net/api/Form/${id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        setServices((prev) => prev.filter((service) => service.id !== id));
-        toast.success("Service deleted successfully");
-      } else {
-        toast.error("Failed to delete service");
-      }
+      await api.delete(`/Form/${id}`);
+      setServices((prev) => prev.filter((service) => service.id !== id));
+      toast.success("Service deleted successfully");
     } catch {
-      toast.error("Error deleting service");
+      toast.error("Failed to delete service");
     }
   };
 
@@ -102,29 +103,41 @@ const CreatServices = () => {
       formData.append("CategoryId", selectedService.categoryId);
       formData.append("Status", "Accepted");
 
-      const response = await fetch(
-        `https://arkan2.runasp.net/api/Form/${selectedService.id}/status`,
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value} (type: ${typeof value})`);
+      }
+
+      const response = await api.put(
+        `/Form/${selectedService.id}/status`,
+        formData,
         {
-          method: "PUT",
-          body: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
 
-      if (response.ok) {
-        toast.success("Service status updated to Accepted");
-        closeUpdateModal();
-        // Refresh services
-        const res = await fetch("https://arkan2.runasp.net/api/Form/getAll");
-        const data = await res.json();
-        setServices(data.data.items || []);
-      } else {
-        const errorData = await response.json();
-        toast.error(
-          `Failed to update status: ${errorData.message || response.statusText}`
-        );
-      }
+      console.log("Status update response:", response);
+      toast.success("Service status updated to Accepted");
+      closeUpdateModal();
+      // Refresh services
+      const res = await api.get("/Form/getAll?pageSize=100&pageIndex=1");
+      console.log("New services data:", res.data);
+      setServices(res.data.data.items || []);
+      console.log(
+        "Services state updated with",
+        res.data.data.items?.length,
+        "items"
+      );
     } catch (err) {
-      toast.error(`Error updating status: ${err.message}`);
+      console.error("Status update error:", err);
+      if (err.response && err.response.data && err.response.data.errors) {
+        err.response.data.errors.forEach((error) => {
+          toast.error(error);
+        });
+      } else {
+        toast.error(`Error updating status: ${err.message}`);
+      }
     } finally {
       setFormLoading(false);
     }
@@ -151,40 +164,43 @@ const CreatServices = () => {
       formData.append("TypeOfService", form.TypeOfService);
       formData.append("CategoryId", form.CategoryId);
 
-      const response = await fetch(
-        "https://arkan2.runasp.net/api/Form/create",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      if (response.ok) {
-        toast.success("Service created successfully!", {
-          theme: "colored",
-        });
-        setShowModal(false);
-        setForm({
-          ClientName: "",
-          SalesName: "",
-          Descriptions: "",
-          Phone: "",
-          ServiceName: "",
-          TypeOfService: "",
-          CategoryId: "",
-        });
-        // Refresh services list
-        const res = await fetch("https://arkan2.runasp.net/api/Form/getAll");
-        const data = await res.json();
-        setServices(data.data.items || []);
-      } else {
-        const errorData = await response.json();
-        toast.error(
-          `Failed to create service: ${
-            errorData.message || response.statusText
-          }`
-        );
+      console.log("=== DEBUGGING ===");
+      console.log("Form state:", form);
+      console.log("FormData entries:");
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value} (type: ${typeof value})`);
       }
+
+      const response = await api.post("/Form/create", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("Response:", response);
+      toast.success("Service created successfully!", {
+        theme: "colored",
+      });
+      setShowModal(false);
+      setForm({
+        ClientName: "",
+        SalesName: "",
+        Descriptions: "",
+        Phone: "",
+        ServiceName: "",
+        TypeOfService: "",
+        CategoryId: "",
+      });
+      // Refresh services list
+      console.log("Refreshing services list...");
+      const res = await api.get("/Form/getAll?pageSize=100&pageIndex=1");
+      console.log("New services data:", res.data);
+      setServices(res.data.data.items || []);
+      console.log(
+        "Services state updated with",
+        res.data.data.items?.length,
+        "items"
+      );
     } catch (err) {
       toast.error(`Error creating service: ${err.message}`);
     } finally {
@@ -205,12 +221,14 @@ const CreatServices = () => {
     <div className="p-6 min-h-screen">
       {/* Add New Service Button */}
       <div className="flex justify-end mb-6">
-        <button
-          onClick={() => setShowModal(true)}
-          className="px-6 py-2 bg-base hover:bg-primary text-white rounded-lg font-semibold shadow transition-colors duration-300 flex items-center gap-2"
-        >
-          <FaPlus /> Add New Service
-        </button>
+        {isAdmin && (
+          <button
+            onClick={() => setShowModal(true)}
+            className="px-6 py-2 bg-base hover:bg-primary text-white rounded-lg font-semibold shadow transition-colors duration-300 flex items-center gap-2"
+          >
+            <FaPlus /> Add New Service
+          </button>
+        )}
       </div>
 
       {/* Add New Service Modal */}
@@ -447,20 +465,24 @@ const CreatServices = () => {
               className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col overflow-hidden border border-gray-100 group p-6 relative"
             >
               <div className="absolute top-3 right-3 flex gap-2">
-                <button
-                  onClick={() => handleDelete(service.id)}
-                  className="bg-red-100 hover:bg-red-200 text-red-600 p-2 rounded-full shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-300"
-                  title="Delete"
-                >
-                  <FaTrash />
-                </button>
-                <button
-                  onClick={() => handleUpdateClick(service)}
-                  className="bg-blue-100 hover:bg-blue-200 text-blue-600 p-2 rounded-full shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  title="Update"
-                >
-                  <FaEdit />
-                </button>
+                {isAdmin && (
+                  <button
+                    onClick={() => handleDelete(service.id)}
+                    className="bg-red-100 hover:bg-red-200 text-red-600 p-2 rounded-full shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-300"
+                    title="Delete"
+                  >
+                    <FaTrash />
+                  </button>
+                )}
+                {(isAdmin || isSales) && (
+                  <button
+                    onClick={() => handleUpdateClick(service)}
+                    className="bg-blue-100 hover:bg-blue-200 text-blue-600 p-2 rounded-full shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    title="Update Status"
+                  >
+                    <FaEdit />
+                  </button>
+                )}
               </div>
 
               <div className="mb-2 flex items-center gap-2">

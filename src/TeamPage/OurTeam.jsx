@@ -1,21 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import member1 from "../assets/team/Rectangle 6 (1).png";
-import member2 from "../assets/team/Rectangle 6 (2).png";
-import member3 from "../assets/team/Rectangle 6.png";
 import star from "../assets/home/Star 2.png";
 import Rectangle from "../assets/Poertfolio/Ellipse 4.png";
 import Right from "../assets/Poertfolio/right.png";
-
+import { ClipLoader } from "react-spinners";
 const OurTeam = () => {
   const { t, i18n } = useTranslation();
 
-  const teamMembers = [
-    { id: 1, image: member1 },
-    { id: 2, image: member2 },
-    { id: 3, image: member3 },
-    { id: 4, image: member1 }, // Reusing member1 image for the 4th member
-  ];
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const response = await fetch("https://arkan2.runasp.net/api/Team");
+        const data = await response.json();
+        if (data.statusCode === 200 && Array.isArray(data.data)) {
+          setTeamMembers(data.data);
+        } else {
+          setError("Failed to load team members");
+        }
+      } catch {
+        setError("Failed to load team members");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTeam();
+  }, []);
 
   return (
     <section className="py-[120px] px-4 sm:px-6 lg:px-8 relative">
@@ -47,30 +60,38 @@ const OurTeam = () => {
             }`}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {teamMembers.map((member) => (
-              <div key={member.id} className="relative">
-                <img
-                  src={member.image}
-                  alt={t("teamMember.memberAlt", { number: member.id })}
-                  className="mb-[16px] w-full"
-                />
-                <div
-                  className="absolute top-[80%] left-1/2 -translate-x-1/2 bg-white p-3 rounded-[12px] w-[80%] text-center"
-                  style={{
-                    boxShadow: "0px 4px 4px 0px #FDEFDD",
-                  }}
-                >
-                  <h2 className="text-[22px] font-[700] leading-[36px] mb-2">
-                    {t("teamMember.memberName")}
-                  </h2>
-                  <p className="text-baseTwo text-[16px] font-[400] leading-[28px]">
-                    {t("teamMember.memberPosition")}
-                  </p>
+          {loading ? (
+            <div className="flex justify-center items-center min-h-[400px]">
+              <ClipLoader color="#D88317" size={50} />
+            </div>
+          ) : error ? (
+            <div className="text-center text-red-500 py-10">{error}</div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-20">
+              {teamMembers.map((member) => (
+                <div key={member.id} className="relative w-full">
+                  <img
+                    src={member.attachment}
+                    alt={member.name}
+                    className="mb-[16px] w-[384px]  h-[320px] object-cover rounded-lg"
+                  />
+                  <div
+                    className="absolute top-[80%] left-0 bg-white p-3 rounded-[12px] w-full text-center"
+                    style={{
+                      boxShadow: "0px 4px 4px 0px #FDEFDD",
+                    }}
+                  >
+                    <h2 className="text-[20px] font-[700] leading-[36px] mb-2">
+                      {member.name}
+                    </h2>
+                    <p className="text-baseTwo text-[16px] font-[400] leading-[28px]">
+                      {member.position}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

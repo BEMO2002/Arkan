@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/home/logo(arkan).png";
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -33,18 +34,59 @@ const Login = () => {
         formData
       );
 
+      console.log("LOGIN RESPONSE:", response.data);
+
       if (response.data.message === "success") {
-        // Store the token and user data
-        const { token, user } = response.data;
+        // Store the token
+        const { token } = response.data;
         localStorage.setItem("token", token);
 
-        // Use the login function from AuthContext
-        login({ ...user, token });
+        // استخراج userId من التوكن (JWT)
+        function parseJwt(token) {
+          try {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+              return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+          } catch {
+            return {};
+          }
+        }
+        const payload = parseJwt(token);
+        const userId = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+
+        // Fetch user details (including roles) from API
+        try {
+          const userDetailsRes = await axios.get(
+            `https://arkan2.runasp.net/api/Account/${userId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: "application/json",
+              },
+            }
+          );
+          const userDetails = userDetailsRes.data.data;
+          // Use the login function from AuthContext with roles
+          login({ ...userDetails, token });
+
+          // إعادة التوجيه حسب الدور
+          if (userDetails.roles && userDetails.roles.includes("Sales") && !userDetails.roles.includes("Admin")) {
+            navigate("/admin/creat-services");
+          } else {
+            navigate("/admin/projects");
+          }
+        } catch {
+          toast.error("فشل في جلب بيانات المستخدم.");
+          setLoading(false);
+          return;
+        }
 
         toast.success("Welcome To Admin Dashboard !", {
           theme: "colored",
         });
-        navigate("/admin/projects");
       } else {
         toast.error("Login failed. Please check your credentials.");
       }

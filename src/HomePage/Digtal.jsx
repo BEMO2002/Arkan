@@ -79,7 +79,7 @@ const Digital = () => {
           </div>
         </div>
         <Link
-          to="/contact"
+          to="/services"
           className=" mx-auto lg:mt-50 mt-10  w-[347px] h-[48px] flex items-center justify-center gap-2 px-[16px] py-[8px] font-[700] border border-transparent text-[16px] leading-[26px] rounded-[8px] text-white bg-primary hover:bg-second focus:outline-none transition-colors duration-300"
         >
           <img src={arrow} alt="" />

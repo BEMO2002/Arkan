@@ -48,7 +48,8 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     loading,
     login,
-    logout
+    logout,
+    roles: user?.roles || []
   };
 
   return (
