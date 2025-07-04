@@ -24,7 +24,7 @@ const Digital = () => {
         <img
           src={Ellipse}
           alt=""
-          className="absolute hidden lg:block -bottom-10 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"
+          className="absolute hidden lg:block -bottom-70 right-50 -translate-x-1/2 -translate-y-1/2 -z-10 animate-swing"
         />
         <div className="max-w-7xl max-h-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-10">

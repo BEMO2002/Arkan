@@ -22,7 +22,8 @@ import RoleProtectedRoute from "./components/RoleProtectedRoute";
 import Unauthorized from "./components/Unauthorized";
 import SalesDashboard from "./AdminDashboard/SalesDashboard";
 import { useAuth } from "./context/AuthContext";
-  
+import NotFound from "./NotFound";
+
 function App() {
   const { roles, loading } = useAuth();
 
@@ -62,42 +63,64 @@ function App() {
         <Route path="/contact" element={<Layout />}>
           <Route index element={<MainContact />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={
-          <RoleProtectedRoute allowedRoles={["Admin", "Sales"]}>
-            <LayoutDashboard />
-          </RoleProtectedRoute>
-        }>
-          <Route path="projects" element={
-            <RoleProtectedRoute allowedRoles={["Admin"]}>
-              <ProjectsDashboard />
-            </RoleProtectedRoute>
-          } />
-          <Route path="add-category" element={
-            <RoleProtectedRoute allowedRoles={["Admin"]}>
-              <AddCategory />
-            </RoleProtectedRoute>
-          } />
-          <Route path="contact-form" element={
-            <RoleProtectedRoute allowedRoles={["Admin"]}>
-              <ContactForm />
-            </RoleProtectedRoute>
-          } />
-          <Route path="team-members" element={
-            <RoleProtectedRoute allowedRoles={["Admin"]}>
-              <TeamMembers />
-            </RoleProtectedRoute>
-          } />
-          <Route path="creat-services" element={
+        <Route
+          path="/admin"
+          element={
             <RoleProtectedRoute allowedRoles={["Admin", "Sales"]}>
-              <CreatServices />
+              <LayoutDashboard />
             </RoleProtectedRoute>
-          } />
-          <Route path="sales-dashboard" element={
-            <RoleProtectedRoute allowedRoles={["Sales"]}>
-              <SalesDashboard />
-            </RoleProtectedRoute>
-          } />
+          }
+        >
+          <Route
+            path="projects"
+            element={
+              <RoleProtectedRoute allowedRoles={["Admin"]}>
+                <ProjectsDashboard />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="add-category"
+            element={
+              <RoleProtectedRoute allowedRoles={["Admin"]}>
+                <AddCategory />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="contact-form"
+            element={
+              <RoleProtectedRoute allowedRoles={["Admin"]}>
+                <ContactForm />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="team-members"
+            element={
+              <RoleProtectedRoute allowedRoles={["Admin"]}>
+                <TeamMembers />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="creat-services"
+            element={
+              <RoleProtectedRoute allowedRoles={["Admin", "Sales"]}>
+                <CreatServices />
+              </RoleProtectedRoute>
+            }
+          />
+          <Route
+            path="sales-dashboard"
+            element={
+              <RoleProtectedRoute allowedRoles={["Sales"]}>
+                <SalesDashboard />
+              </RoleProtectedRoute>
+            }
+          />
         </Route>
         <Route path="/unauthorized" element={<Unauthorized />} />
       </Routes>

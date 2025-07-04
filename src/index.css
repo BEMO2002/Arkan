@@ -30,3 +30,38 @@
 [dir='rtl'] .language-switcher {
     direction: ltr;
 }
+
+
+
+@keyframes spin-slow {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+}
+
+
+@keyframes swing {
+    0%, 100% {
+        transform: translateX(-40%) translateY(-50%);
+    }
+
+    25% {
+        transform: translateX(-55%) translateY(-40%);
+    }
+
+    75% {
+        transform: translateX(-45%) translateY(-70%);
+    }
+}
+
+.animate-swing {
+    animation: swing 3s ease-in-out infinite;
+}

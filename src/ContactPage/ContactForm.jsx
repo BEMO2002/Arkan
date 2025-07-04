@@ -5,6 +5,8 @@ import {
   FaMapMarkerAlt,
   FaPaperPlane,
 } from "react-icons/fa";
+import star from "../assets/home/Star 1 (1).png";
+import { useTranslation } from "react-i18next";
 import { CiFacebook } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -43,7 +45,7 @@ const ContactForm = () => {
       [id === "fullName" ? "Name" : id]: value,
     }));
   };
-
+  const { t, i18n } = useTranslation();
   const validateForm = () => {
     const newErrors = {};
     if (!formData.Name.trim()) {
@@ -178,7 +180,20 @@ const ContactForm = () => {
               </Link>
             </div>
           </div>
-
+          <img
+            src={star}
+            alt={t("starAlt", "Star decoration")}
+            className={`absolute bottom-[30%] translate-y-[50%] -z-10 opacity-50 lg:opacity-100 animate-spin-slow ${
+              i18n.language === "ar" ? "left-10" : "right-10"
+            }`}
+          />
+          <img
+            src={star}
+            alt={t("starAlt", "Star decoration")}
+            className={`absolute bottom-[10%] translate-y-[50%] -z-10 opacity-50 lg:opacity-100 animate-spin-slow ${
+              i18n.language === "ar" ? "right-10" : "left-10"
+            }`}
+          />
           {/* Right Side - Form */}
           <div className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-8">
             <form onSubmit={handleSubmit}>
@@ -242,7 +257,9 @@ const ContactForm = () => {
                   />
                 </div>
                 {errors.PhoneNumber && (
-                  <p className="text-red-500 text-xs mt-1">{errors.PhoneNumber}</p>
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.PhoneNumber}
+                  </p>
                 )}
               </div>
 
@@ -268,7 +285,9 @@ const ContactForm = () => {
                   ))}
                 </select>
                 {errors.BusinessField && (
-                  <p className="text-red-500 text-xs mt-1">{errors.BusinessField}</p>
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.BusinessField}
+                  </p>
                 )}
               </div>
 
