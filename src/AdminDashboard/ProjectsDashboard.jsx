@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import api from '../utils/axiosConfig';
+import api from "../utils/axiosConfig";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
-    
+
 const ProjectsDashboard = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,6 +17,14 @@ const ProjectsDashboard = () => {
     categoryId: "",
   });
   const fileInputRef = useRef();
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editForm, setEditForm] = useState({
+    id: null,
+    name: "",
+    projectLink: "",
+    attachment: null,
+    categoryId: "",
+  });
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -102,6 +110,66 @@ const ProjectsDashboard = () => {
         position: "top-right",
         autoClose: 3000,
       });
+    }
+  };
+
+  const openEditModal = (project) => {
+    setEditForm({
+      id: project.id,
+      name: project.name,
+      projectLink: project.projectLink,
+      attachment: null, // File input is always empty for security
+      categoryId: project.categoryId,
+    });
+    setEditModalOpen(true);
+    if (categories.length === 0) {
+      api
+        .get("/Category")
+        .then((res) => setCategories(res.data.data))
+        .catch(() => toast.error("Failed to load categories"));
+    }
+  };
+  const closeEditModal = () => {
+    setEditModalOpen(false);
+    setEditForm({
+      id: null,
+      name: "",
+      projectLink: "",
+      attachment: null,
+      categoryId: "",
+    });
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+  const handleEditFormChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "attachment") {
+      setEditForm((prev) => ({ ...prev, attachment: files[0] }));
+    } else {
+      setEditForm((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+  const handleEditProject = async (e) => {
+    e.preventDefault();
+    if (!editForm.name || !editForm.projectLink || !editForm.categoryId) {
+      toast.error("Please fill all fields (file optional). ");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("Name", editForm.name);
+    formData.append("ProjectLink", editForm.projectLink);
+    if (editForm.attachment) formData.append("Attachment", editForm.attachment);
+    formData.append("CategoryId", editForm.categoryId);
+    try {
+      await api.put(`/Service/${editForm.id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      toast.success("Project updated successfully!");
+      closeEditModal();
+      // Refresh projects list
+      const response = await api.get("/Service?pageSize=100&pageIndex=1");
+      setProjects(response.data.data.items);
+    } catch {
+      toast.error("Failed to update project.");
     }
   };
 
@@ -207,6 +275,86 @@ const ProjectsDashboard = () => {
           </div>
         </div>
       )}
+      {editModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 bg-opacity-40">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 relative animate-fadeIn">
+            <button
+              onClick={closeEditModal}
+              className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl font-bold"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <h3 className="text-xl font-bold mb-6 text-center">Edit Project</h3>
+            <form onSubmit={handleEditProject} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={editForm.name}
+                  onChange={handleEditFormChange}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Project Link
+                </label>
+                <input
+                  type="text"
+                  name="projectLink"
+                  value={editForm.projectLink}
+                  onChange={handleEditFormChange}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Attachment (leave empty to keep current)
+                </label>
+                <input
+                  type="file"
+                  name="attachment"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  onChange={handleEditFormChange}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Category
+                </label>
+                <select
+                  name="categoryId"
+                  value={editForm.categoryId}
+                  onChange={handleEditFormChange}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+                  required
+                >
+                  <option value="">Select Category</option>
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-primary hover:bg-second text-white rounded-lg font-semibold shadow transition-colors duration-200"
+                >
+                  Update Project
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
       <h2 className="text-3xl font-extrabold mb-8 text-center text-gray-800 tracking-tight drop-shadow-sm">
         Projects Dashboard
       </h2>
@@ -222,12 +370,21 @@ const ProjectsDashboard = () => {
                 alt={project.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/10 bg-opacity-30 pointer-events-none z-10"></div>
               <button
                 onClick={() => handleDelete(project.id)}
-                className="absolute top-3 right-3 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className="absolute top-3 right-3 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-300 z-20"
                 title="Delete Project"
               >
                 <FaTrash size={16} />
+              </button>
+              <button
+                onClick={() => openEditModal(project)}
+                className="absolute top-3 right-12 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300 z-20"
+                title="Edit Project"
+              >
+                <FaEdit size={16} />
               </button>
             </div>
             <div className="flex-1 flex flex-col p-5">
