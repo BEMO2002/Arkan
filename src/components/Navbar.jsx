@@ -49,7 +49,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="bg-white"
+      className="bg-white sticky top-0 z-50"
       style={{ boxShadow: "0px 4px 4px rgba(250, 221, 184, 0.8)" }}
     >
       <div className="max-w-[1350px] mx-auto md:px-[120px] px-4 py-1 gap-[32px] sm:px-6 lg:px-8">

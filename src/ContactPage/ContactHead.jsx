@@ -5,7 +5,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 
 const ContactHead = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <div className="mt-1 relative">
@@ -23,7 +23,10 @@ const ContactHead = () => {
           <Link to="/" className="text-baseTwo text-[14px] font-[400]">
             {t("breadcrumbsContact.home")}
           </Link>
-          <MdKeyboardArrowRight size={23} />
+          <MdKeyboardArrowRight
+            size={23}
+            className={i18n.language === "ar" ? "transform rotate-180" : ""}
+          />
           <p className="text-[14px] font-[400] text-base">
             {t("breadcrumbsContact.contact")}
           </p>
